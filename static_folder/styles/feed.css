@@ -27,6 +27,18 @@ body {
   background-color: lightslategray;
 }
 
+textarea {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+}
+
+#submit_btn {
+  margin: 20px;
+  align-self: right;
+}
+
 #feed {
   grid-row: 1;
   grid-column: 2 / span 1;
@@ -58,13 +70,11 @@ body {
 }
 
 .talk-bubble {
-	margin: 15px;
+	margin: 20px;
   display: block;
   position: relative;
   height: auto;
 	background-color: lightgreen;
-
-
 }
 
 .round{
@@ -104,6 +114,7 @@ body {
  text-align: left;
  line-height: 1.5em;
 }
+
 .talktext p{
  /* remove webkit p margins */
  -webkit-margin-before: 0em;
