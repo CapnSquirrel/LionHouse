@@ -1,0 +1,62 @@
+body {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  height: 100vh;
+}
+
+#console {
+  grid-row: 1;
+  grid-column: 1 / span 1;
+  background-color: red;
+  height: 100vh;
+}
+
+#user_info {
+  height: 20%;
+  background-color: pink;
+}
+
+#post {
+  height: 20%;
+  background-color: green;
+}
+
+#feed {
+  grid-row: 1;
+  grid-column: 2 / span 1;
+  background-color: black;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+#about {
+  grid-row: 1;
+  grid-column: 3 / span 1;
+  background-color: blue;
+  height: 100vh;
+}
+
+#target_info {
+  height: 30%;
+  background-color: teal;
+}
+
+#left_col {
+  grid-row: 1;
+  grid-column: 1 / span 1;
+}
+
+#right_col {
+  grid-row: 1;
+  grid-column: 2 / span 1;
+}
+
+.posts {
+  height: 120px;
+  background-color: lime;
+  margin: 10px;
+}
