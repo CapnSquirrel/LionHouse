@@ -4,40 +4,47 @@ body {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr;
   height: 100vh;
+  font-family: avenir;
 }
 
 #console {
   grid-row: 1;
   grid-column: 1 / span 1;
-  background-color: red;
+  background-color: white;
   height: 100vh;
 }
 
 #user_info {
   height: 20%;
-  background-color: pink;
+  background-color: whitesmoke;
+  padding: 20px;
+  text-align: center;
+
 }
 
 #post {
   height: 20%;
-  background-color: green;
+  background-color: lightslategray;
+  padding: 20px;
 }
 
 #feed {
   grid-row: 1;
   grid-column: 2 / span 1;
-  background-color: black;
+  background-color: whitesmoke;
   height: 100vh;
   display: grid;
+  gap: 20px -10px;
+
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr
 }
 
 #about {
   grid-row: 1;
   grid-column: 3 / span 1;
   background-color: blue;
-  height: 100vh;
+  height: 100vh
 }
 
 #target_info {
@@ -45,18 +52,61 @@ body {
   background-color: teal;
 }
 
-#left_col {
+#feed_column {
   grid-row: 1;
-  grid-column: 1 / span 1;
+  grid-column: 1 / span 2;
+
 }
 
-#right_col {
-  grid-row: 1;
-  grid-column: 2 / span 1;
+.talk-bubble {
+	margin: 15px;
+  display: inline-block;
+  position: relative;
+  height: auto;
+	background-color: lightgreen;
+
+
 }
 
-.posts {
-  height: 120px;
-  background-color: lime;
-  margin: 10px;
+.round{
+  border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+}
+
+.tri-right.border.btm-left:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: -8px;
+  right: auto;
+  top: auto;
+	bottom: -40px;
+	border: 32px solid;
+	border-color: transparent transparent transparent #666;
+}
+.tri-right.btm-left:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 0px;
+  right: auto;
+  top: auto;
+	bottom: -20px;
+	border: 22px solid;
+	border-color: transparent transparent transparent lightgreen;
+}
+
+.talktext{
+ padding: 20px;
+ margin: 10px;
+ text-align: left;
+ line-height: 1.5em;
+}
+.talktext p{
+ /* remove webkit p margins */
+ -webkit-margin-before: 0em;
+ -webkit-margin-after: 0em;
 }
