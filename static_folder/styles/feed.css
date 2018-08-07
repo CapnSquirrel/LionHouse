@@ -10,7 +10,7 @@ body {
 #console {
   grid-row: 1;
   grid-column: 1 / span 1;
-  background-color: white;
+  background-color: red;
   height: 100vh;
 }
 
@@ -25,7 +25,6 @@ body {
 #post {
   height: 20%;
   background-color: lightslategray;
-  padding: 20px;
 }
 
 #feed {
@@ -60,7 +59,7 @@ body {
 
 .talk-bubble {
 	margin: 15px;
-  display: inline-block;
+  display: block;
   position: relative;
   height: auto;
 	background-color: lightgreen;
