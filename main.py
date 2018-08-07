@@ -9,13 +9,18 @@ jinja_current_directory = jinja2.Environment(
 
 #the handler section
 class LoginPageHandler(webapp2.RequestHandler):
-    def get(self): #for a get request
+    def get(self):
         login_page = jinja_current_directory.get_template(
             "templates/index.html")
         self.response.write(login_page.render())
 
 class FeedHandler(webapp2.RequestHandler):
-    def get(self): #for a get request
+    def get(self):
+        feed_page = jinja_current_directory.get_template(
+            "templates/feed.html")
+        self.response.write(feed_page.render())
+
+    def post(self):
         feed_page = jinja_current_directory.get_template(
             "templates/feed.html")
         self.response.write(feed_page.render())

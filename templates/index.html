@@ -3,12 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>LionHouse</title>
+    <link rel="stylesheet" href="../static_folder/styles/login.css">
   </head>
   <body>
-    <form>
+    <h1 id="login_title">LionHouse</h1>
+    <form method="post" action="/feed">
       <input type="text" name="username">
       <input type="password" name="password">
-      <div id="submit"></div>
+      <input id="submit_btn" type="submit" value="Submit">
     </form>
   </body>
 </html>

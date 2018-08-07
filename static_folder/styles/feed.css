@@ -19,12 +19,23 @@ body {
   background-color: whitesmoke;
   padding: 20px;
   text-align: center;
-
 }
 
 #post {
   height: 20%;
   background-color: lightslategray;
+}
+
+#post textarea{
+  margin: 5px;
+  height: 120px;
+  width: 90%;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif;
+  background-image: url(bg.gif);
+  background-position: bottom right;
+  background-repeat: no-repeat;
 }
 
 textarea {
