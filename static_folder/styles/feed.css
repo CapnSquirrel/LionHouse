@@ -12,6 +12,7 @@ body {
   grid-column: 1 / span 1;
   background-color: red;
   height: 100vh;
+  box-shadow:  0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 #user_info {
@@ -19,35 +20,22 @@ body {
   background-color: whitesmoke;
   padding: 20px;
   text-align: center;
+  box-shadow:  0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
+  border-radius: 30px;
+
 }
 
 #post {
   height: 20%;
   background-color: lightslategray;
-}
-
-#post textarea{
-  margin: 5px;
-  height: 120px;
-  width: 90%;
-  border: 3px solid #cccccc;
+  margin: 10px;
+  height: 150px;
   padding: 5px;
-  font-family: Tahoma, sans-serif;
-  background-image: url(bg.gif);
-  background-position: bottom right;
-  background-repeat: no-repeat;
-}
-
-textarea {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
 }
 
 #submit_btn {
-  margin: 20px;
-  align-self: right;
+  display: block;
 }
 
 #feed {
@@ -55,79 +43,35 @@ textarea {
   grid-column: 2 / span 1;
   background-color: whitesmoke;
   height: 100vh;
-  display: grid;
   gap: 20px -10px;
-
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr
 }
 
 #about {
   grid-row: 1;
   grid-column: 3 / span 1;
   background-color: blue;
-  height: 100vh
+  height: 100vh;
+  box-shadow:  0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 #target_info {
   height: 30%;
   background-color: teal;
-}
-
-#feed_column {
-  grid-row: 1;
-  grid-column: 1 / span 2;
-
-}
-
-.talk-bubble {
-	margin: 20px;
-  display: block;
-  position: relative;
-  height: auto;
-	background-color: lightgreen;
-}
-
-.round{
+  box-shadow:  0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
   border-radius: 30px;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
+  padding: 20px;
 }
 
-.tri-right.border.btm-left:before {
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: -8px;
-  right: auto;
-  top: auto;
-	bottom: -40px;
-	border: 32px solid;
-	border-color: transparent transparent transparent #666;
-}
-.tri-right.btm-left:after{
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: 0px;
-  right: auto;
-  top: auto;
-	bottom: -20px;
-	border: 22px solid;
-	border-color: transparent transparent transparent lightgreen;
-}
+ .textpost {
+     background-color: lightgreen;
+     height: 90px;
+     margin: 10px;
+     box-shadow:  0 6px 10px 0 rgba(0, 0, 0, 0.19);
+     padding: 20px;
+     border-radius: 30px;
+ }
 
-.talktext{
- padding: 20px;
- margin: 10px;
- text-align: left;
- line-height: 1.5em;
-}
-
-.talktext p{
- /* remove webkit p margins */
- -webkit-margin-before: 0em;
- -webkit-margin-after: 0em;
-}
+ .textpost:hover {
+     height: 130px;
+ }
