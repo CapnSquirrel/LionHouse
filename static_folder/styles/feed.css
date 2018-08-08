@@ -4,7 +4,8 @@ body {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr;
   height: 100vh;
-  font-family: avenir;
+  font-family: Avenir;
+  background-color: DarkSlateGray;
 }
 
 #console {
@@ -22,8 +23,16 @@ body {
   text-align: center;
   box-shadow:  0 6px 10px 0 rgba(0, 0, 0, 0.19);
   margin: 10px;
-  border-radius: 30px;
+}
 
+#profile_image {
+  height: 100px;
+}
+
+textarea {
+  resize: none;
+  width: 98%;
+  height: 98%;
 }
 
 #post {
@@ -59,7 +68,6 @@ body {
   background-color: teal;
   box-shadow:  0 6px 10px 0 rgba(0, 0, 0, 0.19);
   margin: 10px;
-  border-radius: 30px;
   padding: 20px;
 }
 
@@ -72,6 +80,6 @@ body {
      border-radius: 30px;
  }
 
- .textpost:hover {
+ /* .textpost:hover {
      height: 130px;
- }
+ } */

@@ -1,6 +1,7 @@
 import webapp2
 import jinja2
 import os
+from user_info import user_information
 
 jinja_current_directory = jinja2.Environment(
         loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -14,16 +15,21 @@ class LoginPageHandler(webapp2.RequestHandler):
             "templates/index.html")
         self.response.write(login_page.render())
 
-class FeedHandler(webapp2.RequestHandler):
-    def get(self):
-        feed_page = jinja_current_directory.get_template(
-            "templates/feed.html")
-        self.response.write(feed_page.render())
-
     def post(self):
         feed_page = jinja_current_directory.get_template(
             "templates/feed.html")
         self.response.write(feed_page.render())
+
+class FeedHandler(webapp2.RequestHandler):
+    def get(self):
+        feed_page = jinja_current_directory.get_template(
+            "templates/feed.html")
+        self.response.write(feed_page.render(user_information))
+
+    def post(self):
+        feed_page = jinja_current_directory.get_template(
+            "templates/feed.html")
+        self.response.write(feed_page.render(user_information))
 
 #the app configuration section
 app = webapp2.WSGIApplication([

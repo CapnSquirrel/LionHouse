@@ -8,21 +8,40 @@
   <body>
     <!--CONSOLE SECTION -->
     <section id="console">
-      <div id="user_info">Ian Lizarda</div>
+      <div id="user_info">
+        <img id="profile_image" src="static_folder/{{ profile_image }}" alt="user profile image">
+        <h1 id="username">{{ username }}</h1>
+      </div>
       <div id="post">
-        <form>
-         <textarea name="name" rows="8" cols="70">Post here!</textarea>
+        <form method="post">
+          <h2> Post </h2>
+          <textarea name="user_post" rows=5 cols=30 value=""></textarea>
           <input id="submit_btn" type="submit" value="Submit">
         </form>
       </div>
     </section>
     <!--FEED SECTION-->
     <section id="feed">
-        <div class="textpost">hello</div>
-        <div class="textpost">my</div>
-        <div class="textpost">name</div>
-        <div class="textpost">is</div>
-        <div class="textpost">emily</div>
+      <div id="feed_column">
+        <div class="textpost">
+            In time you will know what it's like to lose...
+            In time you will know what it's like to lose...
+            In time you will know what it's like to lose...
+            In time you will know what it's like to lose...
+        </div>
+        <div class="textpost">
+          to feel so desperately that you're right...
+        </div>
+        <div class="textpost">
+          yet to fail, nonetheless.
+        </div>
+        <div class="textpost">
+          Dread it. Run from it. Destiny still arrives all the same.
+        </div>
+        <div class="textpost">
+          Or should I say, I am.
+        </div>
+      </div>
     </section>
     <!--ABOUT SECTION-->
     <section id="about">
