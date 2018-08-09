@@ -6,4 +6,3 @@ from mock import patch, Mock
 
 import LionHouse_models.User as User
 
-def test

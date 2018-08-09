@@ -1,6 +1,14 @@
 # Python Virtual Env
 env
 
+# VIM
+*.swp
+*.swo
+
+# Python Tests
+.cache
+.pytest_cache
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
