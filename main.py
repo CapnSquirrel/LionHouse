@@ -15,6 +15,8 @@ jinja_current_directory = jinja2.Environment(
         loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
         extensions=['jinja2.ext.autoescape'],
         autoescape=True)
+logout_url = users.create_logout_url('/')
+login_url = users.create_login_url('/')
 
 #the handler section
 class LoginPageHandler(webapp2.RequestHandler):
@@ -22,8 +24,6 @@ class LoginPageHandler(webapp2.RequestHandler):
         welcome_page = jinja_current_directory.get_template(
             "templates/welcome.html")
         user = users.get_current_user()
-        logout_url = users.create_logout_url('/')
-        login_url = users.create_login_url('/')
 
         if user:
             existing_user = User.query().filter(
@@ -34,6 +34,7 @@ class LoginPageHandler(webapp2.RequestHandler):
             else:
                 display = previous_user.format(
                 existing_user.name, logout_url)
+                self.redirect('/feed')
             self.response.write(display)
         else:
             display = google_login.format(login_url)
@@ -55,12 +56,12 @@ class FeedHandler(webapp2.RequestHandler):
     def get(self):
         feed_page = jinja_current_directory.get_template(
             "templates/feed.html")
-        self.response.write(feed_page.render(user_information))
+        self.response.write(feed_page.render({"sign_out":logout_url}))
 
     def post(self):
         feed_page = jinja_current_directory.get_template(
             "templates/feed.html")
-        self.response.write(feed_page.render(user_information))
+        self.response.write(feed_page.render())
 
 #the app configuration section
 app = webapp2.WSGIApplication([
