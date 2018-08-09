@@ -23,20 +23,26 @@ class LoginPageHandler(webapp2.RequestHandler):
     def get(self):
         welcome_page = jinja_current_directory.get_template(
             "templates/welcome.html")
+
+        # get Google user
         user = users.get_current_user()
 
         if user:
+            # look for user in datastore
             existing_user = User.query().filter(
             User.email == user.email()).get()
             nickname = user.nickname()
             if not existing_user:
+                # prompt new users to sign up
                 display = new_user.format(nickname, login_url)
             else:
+                # direct existing user to feed
                 display = previous_user.format(
                 existing_user.name, logout_url)
                 self.redirect('/feed')
             self.response.write(display)
         else:
+            # Ask user to sign in to Google
             display = google_login.format(login_url)
             self.response.write(display)
 
@@ -44,6 +50,8 @@ class LoginPageHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         feed_page = jinja_current_directory.get_template(
             "templates/feed.html")
+
+        # upon form submission, create new user and store in datastore
         new_user_entry = User(
             name= self.request.get("name"),
             email= user.email(),
