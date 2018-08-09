@@ -1,3 +1,7 @@
+## Logging
+import logging as log
+#import coloredlogs
+
 import webapp2
 import jinja2
 import os
