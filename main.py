@@ -5,7 +5,6 @@ import logging as log
 import webapp2
 import jinja2
 import os
-from welcome_display import previous_user, new_user, google_login
 from LionHouse_models import Post, User
 from google.appengine.ext import ndb
 from google.appengine.api import users
@@ -21,7 +20,6 @@ login_url = users.create_login_url('/')
 #the handler section
 class LoginPageHandler(webapp2.RequestHandler):
     def get(self):
-        welcome_page = jinja_current_directory.get_template("templates/welcome.html")
         new_user_template = jinja_current_directory.get_template("templates/new_user.html")
         prev_user_template = jinja_current_directory.get_template("templates/prev_user.html")
         google_login_template = jinja_current_directory.get_template("templates/google_login.html")
@@ -36,7 +34,6 @@ class LoginPageHandler(webapp2.RequestHandler):
             nickname = user.nickname()
             if not existing_user:
                 # prompt new users to sign up
-                #display = new_user.format(nickname, login_url)
                 fields = {
                   "nickname": nickname,
                   "login_url": login_url,
@@ -45,13 +42,9 @@ class LoginPageHandler(webapp2.RequestHandler):
                 self.response.write(new_user_template.render(fields))
             else:
                 # direct existing user to feed
-                #display = previous_user.format(
-                  #existing_user.name, logout_url)
-                #self.response.write(prev_user_template.render())
                 self.redirect('/feed')
         else:
             # Ask user to sign in to Google
-            #display = google_login.format(login_url)
             self.response.write(google_login_template.render({ "login_url": login_url }))
 
     def post(self):
