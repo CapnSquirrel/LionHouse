@@ -6,21 +6,23 @@
     <title>LionHouse</title>
   </head>
   <body>
+     <section id="header"></section>
     <!--CONSOLE SECTION -->
     <section id="console">
       <div id="user_info">
-        <h1 id="username">{{ username }}</h1>
-        <h2 id="user_name">{{ user_name }}</h2>
-        <p>Number of Posts: {{ post_count }} </p>
-        <a href="{{sign_out}}">Sign out</a>
+        <h2 class="user_info_content" id="user_name">Name: {{ user_name }}</h2>
+        <h2 class="user_info_content" id="username">Username: {{ username }}</h2>
+        <p class="user_info_content">Number of Posts: {{ post_count }} </p>
+        <a class="user_info_content" href="{{sign_out}}">Sign out</a>
       </div>
       <div id="post">
         <form method="post">
-          <h2> Post </h2>
-          <textarea name="user_post" rows=5 cols=30 value=""></textarea>
-          <input id="submit_btn" type="submit" value="Submit">
+          <h2 class="user_info_content"> Post </h2>
+          <textarea name="user_post" rows="5" cols="30" value=""></textarea>
+          <input id="submit_post_btn" type="submit" value="Submit">
         </form>
       </div>
+      <button id="update_button" type="submit">Update Feed</button>
     </section>
     <!--FEED SECTION-->
     <section id="feed">
@@ -45,9 +47,11 @@
     </section>
     <!--ABOUT SECTION-->
     <section id="about">
-      <h1>LionHouse</h1>
-      <p>Number of users: {{ user_count }}!!!</p>
-      <div id="target_info">About ____</div>
+        <div id="about_content">
+            <h1>LionHouse</h1>
+            <p>Number of users: {{ user_count }}!!!</p>
+        </div>
+        <div id="target_info">About ____</div>
     </section>
   </body>
 </html>
