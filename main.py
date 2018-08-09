@@ -21,8 +21,10 @@ login_url = users.create_login_url('/')
 #the handler section
 class LoginPageHandler(webapp2.RequestHandler):
     def get(self):
-        welcome_page = jinja_current_directory.get_template(
-            "templates/welcome.html")
+        welcome_page = jinja_current_directory.get_template("templates/welcome.html")
+        new_user_template = jinja_current_directory.get_template("templates/new_user.html")
+        prev_user_template = jinja_current_directory.get_template("templates/prev_user.html")
+        google_login_template = jinja_current_directory.get_template("templates/google_login.html")
 
         # get Google user
         user = users.get_current_user()
@@ -34,17 +36,23 @@ class LoginPageHandler(webapp2.RequestHandler):
             nickname = user.nickname()
             if not existing_user:
                 # prompt new users to sign up
-                display = new_user.format(nickname, login_url)
+                #display = new_user.format(nickname, login_url)
+                fields = {
+                  "nickname": nickname,
+                  "login_url": login_url,
+                }
+
+                self.response.write(new_user_template.render(fields))
             else:
                 # direct existing user to feed
-                display = previous_user.format(
-                existing_user.name, logout_url)
+                #display = previous_user.format(
+                  #existing_user.name, logout_url)
+                #self.response.write(prev_user_template.render())
                 self.redirect('/feed')
-            self.response.write(display)
         else:
             # Ask user to sign in to Google
-            display = google_login.format(login_url)
-            self.response.write(display)
+            #display = google_login.format(login_url)
+            self.response.write(google_login_template.render({ "login_url": login_url }))
 
     def post(self):
         user = users.get_current_user()
@@ -53,12 +61,12 @@ class LoginPageHandler(webapp2.RequestHandler):
 
         # upon form submission, create new user and store in datastore
         new_user_entry = User(
-            name= self.request.get("name"),
-            email= user.email(),
-            posts=[]
+            name = self.request.get("name"),
+            email = user.email(),
+            posts = [],
         )
         new_user_entry.put()
-        self.response.write(feed_page.render())
+        self.response.write(feed_page.render({ "sign_out": logout_url }))
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
