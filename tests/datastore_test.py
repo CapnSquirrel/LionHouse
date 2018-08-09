@@ -12,6 +12,12 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
+# Explanation:
+# https://cloud.google.com/appengine/docs/standard/python/tools/localunittesting
+
+# Code:
+# https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/appengine/standard/localtesting/datastore_test.py
+
 # [START imports]
 import unittest
 
