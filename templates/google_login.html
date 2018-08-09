@@ -1,7 +1,9 @@
 {% extends "templates/layout.html" %}
 {% block body %}
 
-<h1>Please log in to use LionHouse!</h1>
-<a href="{{ login_url }}">Sign in</a>
+<div class="background_image">
+  <h1 id="title">LionHouse</h1>
+  <h2><a id="login_link" href="{{ login_url }}">Sign in</a></h2>
+</div>
 
 {% endblock %}

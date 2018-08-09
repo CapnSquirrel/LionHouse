@@ -6,16 +6,14 @@ import webapp2
 import jinja2
 import os
 from LionHouse_models import Post, User
+from content_management import populate_feed, logout_url, login_url
 from google.appengine.ext import ndb
 from google.appengine.api import users
-
 
 jinja_current_directory = jinja2.Environment(
         loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
         extensions=['jinja2.ext.autoescape'],
         autoescape=True)
-logout_url = users.create_logout_url('/')
-login_url = users.create_login_url('/')
 
 #the handler section
 class LoginPageHandler(webapp2.RequestHandler):
@@ -29,16 +27,14 @@ class LoginPageHandler(webapp2.RequestHandler):
 
         if user:
             # look for user in datastore
-            existing_user = User.query().filter(
-            User.email == user.email()).get()
+            existing_user = User.query().filter(User.email == user.email()).get()
             nickname = user.nickname()
             if not existing_user:
                 # prompt new users to sign up
                 fields = {
                   "nickname": nickname,
-                  "login_url": login_url,
+                  "logout_url": logout_url,
                 }
-
                 self.response.write(new_user_template.render(fields))
             else:
                 # direct existing user to feed
@@ -49,27 +45,38 @@ class LoginPageHandler(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        feed_page = jinja_current_directory.get_template(
-            "templates/feed.html")
+        feed_page = jinja_current_directory.get_template("templates/feed.html")
 
         # upon form submission, create new user and store in datastore
         new_user_entry = User(
             name = self.request.get("name"),
+            username = self.request.get("username"),
             email = user.email(),
             posts = [],
         )
         new_user_entry.put()
-        self.response.write(feed_page.render({ "sign_out": logout_url }))
+        feed_fields = populate_feed(new_user_entry)
+        self.response.write(feed_page.render(feed_fields))
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
-        feed_page = jinja_current_directory.get_template(
-            "templates/feed.html")
-        self.response.write(feed_page.render({"sign_out":logout_url}))
+        user = users.get_current_user()
+        feed_page = jinja_current_directory.get_template("templates/feed.html")
+
+        if not user:
+            self.redirect('/')
+
+        current_user = User.query().filter(User.email == user.email()).get()
+
+        feed_fields = populate_feed(current_user)
+        self.response.write(feed_page.render(feed_fields))
 
     def post(self):
-        feed_page = jinja_current_directory.get_template(
-            "templates/feed.html")
+        feed_page = jinja_current_directory.get_template("templates/feed.html")
+        new_post_entry = Post(
+            author= "",
+            content="",
+        )
         self.response.write(feed_page.render())
 
 #the app configuration section

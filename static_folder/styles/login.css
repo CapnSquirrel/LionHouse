@@ -1,4 +1,45 @@
-#submit_btn {
-  margin: 20px;
-  align-self: right;
+#title, #login_link {
+  font-family: "Futura";
+  margin: 0;
+  text-align: center;
+  position: relative;
+  text-shadow: 2px 2px 4px #202020;
+}
+
+#title {
+  padding-top: 300px;
+  font-size: 150px;
+  color: white;
+  filter: blur(-2px);
+}
+
+#login_link {
+  padding-bottom: 300px;
+  font-size: 40px;
+  filter: blur(-2px);
+  font-weight: lighter;
+  color: white;
+  text-decoration: none;
+}
+
+#login_link:hover {
+    color: lightblue;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+.background_image {
+  background-image: url("../media/208112.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }

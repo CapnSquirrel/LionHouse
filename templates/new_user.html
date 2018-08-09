@@ -1,11 +1,12 @@
 {% extends "templates/layout.html" %}
 {% block body %}
 
-<h1>Welcome to LionHouse, {{ nickname }}!  Please sign up!</h1>
+<h1 id="welcome">Welcome to LionHouse, {{ nickname }}!  Please sign up!</h1>
 <form method="post" action="/">
     <input type="text" name="name" placeholder="Enter your full name">
+    <input type="text" name="username" placeholder="Enter a username">
     <input type="submit">
 </form>
-<a href="{{ logout_url }}">Sign out</a>
+<a  href="{{ logout_url }}">Sign out</a>
 
 {% endblock %}
