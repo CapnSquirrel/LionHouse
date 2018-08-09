@@ -1,4 +1,45 @@
-#submit_btn {
-  margin: 20px;
-  align-self: right;
+h1, h2 {
+  font-family: "Futura";
+  margin: 0;
+  text-align: center;
+  position: relative;
+  text-shadow: 2px 2px 4px #202020;
+  
+}
+
+h1 {
+  padding-top: 300px;
+  font-size: 150px;
+  color: white;
+  filter: blur(-2px);
+}
+
+h2 {
+  padding-bottom: 300px;
+  font-size: 40px;
+  filter: blur(-2px);
+  font-weight: lighter;
+}
+
+a {
+  color:white;
+  text-decoration: none;
+}
+
+a:hover {
+    color: lightblue;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.background_image {
+  background-image: url("../media/208112.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
