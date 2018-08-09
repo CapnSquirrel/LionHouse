@@ -36,7 +36,7 @@ class LoginPageHandler(webapp2.RequestHandler):
                 # prompt new users to sign up
                 fields = {
                   "nickname": nickname,
-                  "login_url": login_url,
+                  "logout_url": logout_url,
                 }
 
                 self.response.write(new_user_template.render(fields))
