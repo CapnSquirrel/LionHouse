@@ -1,7 +1,7 @@
 import webapp2
 import jinja2
 import os
-from welcome_display import existing_user, new_user, google_login
+from welcome_display import previous_user, new_user, google_login
 from LionHouse_models import Post, User
 from google.appengine.ext import ndb
 from google.appengine.api import users
@@ -22,12 +22,13 @@ class LoginPageHandler(webapp2.RequestHandler):
         login_url = users.create_login_url('/')
 
         if user:
-            existing_user = User.get_by_id(user.user_id())
-            email_address = user.nickname()
+            existing_user = User.query().filter(
+            User.email == user.email()).get()
+            nickname = user.nickname()
             if not existing_user:
-                display = new_user.format(email_address, login_url)
+                display = new_user.format(nickname, login_url)
             else:
-                display = existing_user.format(
+                display = previous_user.format(
                 existing_user.name, logout_url)
             self.response.write(display)
         else:

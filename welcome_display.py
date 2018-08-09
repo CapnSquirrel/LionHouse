@@ -1,5 +1,5 @@
 
-existing_user = '''
+previous_user = '''
 <h1>welcome, {}! </h1>
 <h2>If this isn't you, <a href="{}">Sign out</a>
 '''
