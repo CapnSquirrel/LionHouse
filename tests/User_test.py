@@ -20,6 +20,15 @@
 
 # [START imports]
 import unittest
+import logging as log
+#import coloredlogs
+
+from config import config
+
+## Logging Setup
+#FORMAT = '%(asctime)-15s %(filename)s %(lineno)d: %(message)s'
+#coloredlogs.install(fmt=FORMAT,level=log.DEBUG)
+
 
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
@@ -79,9 +88,15 @@ class DatastoreTestCase(unittest.TestCase):
 
     # [START datastore_example_insert]
     def testInsertEntity(self):
-        User(name = "Test Name", email = "test@email.com").put()
+        User(name = "Test Name", username = "Test Username", email = "test@email.com").put()
         self.assertEqual(1, len(User.query().fetch(2)))
     # [END datastore_example_insert]
+
+    def testGetEntity(self):
+        #self.assertEqual(1, len(User.query().filter(User.name == "Test Name").get()))
+        print(User.query().filter(User.name == "Test Name").get())
+        print("HELLO")
+        log.info("HELLO")
 
 
 # [START main]
