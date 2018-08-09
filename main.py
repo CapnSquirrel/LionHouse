@@ -52,11 +52,11 @@ class LoginPageHandler(webapp2.RequestHandler):
             name = self.request.get("name"),
             username = self.request.get("username"),
             email = user.email(),
-            posts = [],
         )
         new_user_entry.put()
-        feed_fields = populate_feed(new_user_entry)
-        self.response.write(feed_page.render(feed_fields))
+        # feed_fields = populate_feed(new_user_entry)
+        self.redirect('/feed')
+        # self.response.write(feed_page.render(feed_fields))
 
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
@@ -72,12 +72,21 @@ class FeedHandler(webapp2.RequestHandler):
         self.response.write(feed_page.render(feed_fields))
 
     def post(self):
+        user = users.get_current_user()
         feed_page = jinja_current_directory.get_template("templates/feed.html")
-        new_post_entry = Post(
-            author= "",
-            content="",
+
+        if not user:
+            self.redirect('/')
+
+        current_user = User.query().filter(User.email == user.email()).get()
+
+        new_post = Post(
+            author= current_user.key,
+            content= self.request.get("user_post"),
         )
-        self.response.write(feed_page.render())
+        new_post.put()
+        feed_fields = populate_feed(current_user)
+        self.response.write(feed_page.render(feed_fields))
 
 #the app configuration section
 app = webapp2.WSGIApplication([

@@ -10,7 +10,7 @@
     <section id="console">
       <div id="user_info">
         <h1 id="username">{{ username }}</h1>
-        <h2 id="user_name">{{ user_name}}</h2>
+        <h2 id="user_name">{{ user_name }}</h2>
         <p>Number of Posts: {{ post_count }} </p>
         <a href="{{sign_out}}">Sign out</a>
       </div>
@@ -25,10 +25,7 @@
     <!--FEED SECTION-->
     <section id="feed">
         <div class="textpost">
-            In time you will know what it's like to lose...
-            In time you will know what it's like to lose...
-            In time you will know what it's like to lose...
-            In time you will know what it's like to lose...
+            {{ test_post }}
         </div>
         <div class="textpost">
           to feel so desperately that you're right...
@@ -48,7 +45,9 @@
     </section>
     <!--ABOUT SECTION-->
     <section id="about">
-      <div id="target_info">Info !!!!</div>
+      <h1>LionHouse</h1>
+      <p>Number of users: {{ user_count }}!!!</p>
+      <div id="target_info">About ____</div>
     </section>
   </body>
 </html>
