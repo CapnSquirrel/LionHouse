@@ -1,0 +1,52 @@
+
+## Copy/Pasta from dev_appserver.py
+from __future__ import absolute_import
+from __future__ import unicode_literals
+import os
+
+from bootstrapping import bootstrapping
+from googlecloudsdk.api_lib.app import wrapper_util
+from googlecloudsdk.calliope import exceptions
+from googlecloudsdk.core import metrics
+from googlecloudsdk.core.updater import update_manager
+from googlecloudsdk.core.util import platforms
+
+## Mock NDB https://stackoverflow.com/questions/9943996/how-to-mock-ndb-get-context-urlfetch
+import unittest
+from google.appengine.ext import testbed, ndb
+from mock import patch, Mock
+
+import LionHouse_models.User as User
+
+class MyTestCase(unittest.TestCase):
+
+  def setup(self):
+    self.testbed = testbed.Testbed()
+    self.testbed.activate()
+    self.testbed.init_urlfetch_stub()
+
+    # mock urlrfetch service
+    uf = self.testbed.get_stub('urlfetch')
+    uf._Dynamic_Fetch = Mock()
+
+  @patch('google.appengine.api.urlfetch.urlfetch_service_pb.URLFetchResponse')
+  def test_make_request(self, URLFetchResponse):
+    # mocking rpc response object
+    response = URLFetchResponse.return_value
+    response.contentwastruncated.return_value = False
+    response.statuscode.return_value = 200
+    response.content.return_value = 'Hello world!'    
+
+    ctx = ndb.get_context()
+    fut = ctx.urlfetch('http://google.com')
+    result = fut.get_result()
+
+    self.assertEquals(result.content, 'Hello world!')
+
+  def tearDown(self):
+    self.testbed.deactivate()  
+
+def test_hello():
+  test = MyTestCase()
+  test.setup()
+  assert(1 == 1)
