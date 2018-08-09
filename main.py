@@ -43,21 +43,6 @@ class LoginPageHandler(webapp2.RequestHandler):
             # Ask user to sign in to Google
             self.response.write(google_login_template.render({ "login_url": login_url }))
 
-    def post(self):
-        user = users.get_current_user()
-        feed_page = jinja_current_directory.get_template("templates/feed.html")
-
-        # upon form submission, create new user and store in datastore
-        new_user_entry = User(
-            name = self.request.get("name"),
-            username = self.request.get("username"),
-            email = user.email(),
-        )
-        new_user_entry.put()
-        # feed_fields = populate_feed(new_user_entry)
-        self.redirect('/feed')
-        # self.response.write(feed_page.render(feed_fields))
-
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -67,24 +52,33 @@ class FeedHandler(webapp2.RequestHandler):
             self.redirect('/')
 
         current_user = User.query().filter(User.email == user.email()).get()
-
+        print(str(current_user) + "***************")
         feed_fields = populate_feed(current_user)
         self.response.write(feed_page.render(feed_fields))
 
     def post(self):
         user = users.get_current_user()
         feed_page = jinja_current_directory.get_template("templates/feed.html")
-
         if not user:
             self.redirect('/')
 
         current_user = User.query().filter(User.email == user.email()).get()
-
-        new_post = Post(
-            author= current_user.key,
-            content= self.request.get("user_post"),
-        )
-        new_post.put()
+        if not current_user:
+            # upon new user form submission, create new user and store in datastore
+            new_user_entry = User(
+                name = self.request.get("name"),
+                username = self.request.get("username"),
+                email = user.email(),
+            )
+            new_user_entry.put()
+            current_user = new_user_entry
+        else:
+            # if not a new user, existing user submitted a post from feed
+            new_post = Post(
+                author= current_user.key,
+                content= self.request.get("user_post"),
+            )
+            new_post.put()
         feed_fields = populate_feed(current_user)
         self.response.write(feed_page.render(feed_fields))
 
