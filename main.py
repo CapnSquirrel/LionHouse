@@ -1,7 +1,7 @@
 ## Logging
 import logging as log
 #import coloredlogs
-
+import time
 import webapp2
 import jinja2
 import os
@@ -46,13 +46,9 @@ class LoginPageHandler(webapp2.RequestHandler):
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-
-
         if not user:
             self.redirect('/')
-
         current_user = User.query().filter(User.email == user.email()).get()
-        print(str(current_user) + "***************")
         feed_fields = populate_feed(current_user)
         start_feed = jinja_current_directory.get_template("templates/feed.html")
         self.response.write(start_feed.render(feed_fields))
@@ -75,9 +71,7 @@ class FeedHandler(webapp2.RequestHandler):
             # if not a new user, existing user submitted a post from feed
             new_post = Post(author= current_user.key, content= self.request.get("user_post"))
             new_post.put()
-        feed_fields = populate_feed(current_user)
-        end_feed = jinja_current_directory.get_template("templates/feed.html")
-        self.response.write(end_feed.render(feed_fields))
+        time.sleep(.2)
         self.redirect('/feed')
 
 
