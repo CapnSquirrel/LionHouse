@@ -6,9 +6,15 @@
     <title>LionHouse</title>
   </head>
   <body>
-     <section id="header"></section>
+
+
+     <section id="header"><span id="header_title">LionHouse</span>
+      </section>
+
     <!--CONSOLE SECTION -->
+
     <section id="console">
+
       <div id="user_info">
         <h2 class="user_info_content" id="user_name">Name: {{ user_name }}</h2>
         <h2 class="user_info_content" id="username">Username: {{ username }}</h2>
@@ -27,25 +33,37 @@
     <section id="feed">
       {% for post in posts %}
           <div class="textpost">
-            <h1>{{ post.author }}</h1>
-            <p>{{ post.content }}</p>
-            <span>{{ post.time }}</span>
+            <p>
+              <span id="post_author">{{ post.author }} says...</span> <br>
+              {{ post.content }}
+            </p>
+            <span id="post_time">{{ post.time }}</span>
           </div>
       {% endfor %}
     </section>
     <!--ABOUT SECTION-->
     <section id="about">
         <div id="about_content">
-            <h1>LionHouse</h1>
-            <p>Number of users: {{ user_count }}!!!</p>
+            <h1 id="total_title">Total number of users: {{ user_count }}</h1>
+            {% for user in users %}
+                  <h1 id="target_info">{{ user.username }}</h1>
+            {% endfor %}
         </div>
-        {% for user in users %}
-            <div class="textpost">
-              <h1>{{ user.username }}</h1>
-              <p>{{ user.name }}</p>
-              <span>{{ user.email }}</span>
-            </div>
-        {% endfor %}
+
+
     </section>
   </body>
 </html>
+<script>
+var content = document.getElementById("user_post").value;
+
+   if(content.length<1)
+   {
+        window.alert ("This field cant be left empty");
+        return true;
+   }
+   else
+   {
+        return false;
+   }
+</script>
