@@ -132,7 +132,7 @@ textarea {
 
 #post_author {
   font-weight: bold;
-  font-size: 28px;
+  font-size: 25px;
 }
 
 #post_time {
@@ -149,7 +149,7 @@ textarea {
    box-shadow:  0 6px 10px 0 #00b200;
    padding: 5px 30px 5px 30px;
    border-radius: 30px;
-   font-size: 20;
+   font-size: 20px;
    overflow: auto;
    word-wrap: break-word;
 
