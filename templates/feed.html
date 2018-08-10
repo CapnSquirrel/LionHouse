@@ -22,28 +22,12 @@
           <input id="submit_post_btn" type="submit" value="Submit">
         </form>
       </div>
-      <button id="update_button" type="submit">Update Feed</button>
     </section>
     <!--FEED SECTION-->
     <section id="feed">
-        <div class="textpost">
-            {{ test_post }}
-        </div>
-        <div class="textpost">
-          to feel so desperately that you're right...
-        </div>
-        <div class="textpost">
-          yet to fail, nonetheless.
-        </div>
-        <div class="textpost">
-          Dread it. Run from it. Destiny still arrives all the same.
-        </div>
-        <div class="textpost">
-          Or should I say, I am.
-        </div>
-        <div class="textpost">
-          whack.
-        </div>
+      {% for test in test_post %}
+          <div class="textpost">{{test.content}}</div>
+      {% endfor %}
     </section>
     <!--ABOUT SECTION-->
     <section id="about">

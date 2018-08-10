@@ -46,7 +46,7 @@ class LoginPageHandler(webapp2.RequestHandler):
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        feed_page = jinja_current_directory.get_template("templates/feed.html")
+
 
         if not user:
             self.redirect('/')
@@ -54,14 +54,13 @@ class FeedHandler(webapp2.RequestHandler):
         current_user = User.query().filter(User.email == user.email()).get()
         print(str(current_user) + "***************")
         feed_fields = populate_feed(current_user)
-        self.response.write(feed_page.render(feed_fields))
+        start_feed = jinja_current_directory.get_template("templates/feed.html")
+        self.response.write(start_feed.render(feed_fields))
 
     def post(self):
         user = users.get_current_user()
-        feed_page = jinja_current_directory.get_template("templates/feed.html")
         if not user:
             self.redirect('/')
-
         current_user = User.query().filter(User.email == user.email()).get()
         if not current_user:
             # upon new user form submission, create new user and store in datastore
@@ -74,13 +73,13 @@ class FeedHandler(webapp2.RequestHandler):
             current_user = new_user_entry
         else:
             # if not a new user, existing user submitted a post from feed
-            new_post = Post(
-                author= current_user.key,
-                content= self.request.get("user_post"),
-            )
+            new_post = Post(author= current_user.key, content= self.request.get("user_post"))
             new_post.put()
         feed_fields = populate_feed(current_user)
-        self.response.write(feed_page.render(feed_fields))
+        end_feed = jinja_current_directory.get_template("templates/feed.html")
+        self.response.write(end_feed.render(feed_fields))
+        self.redirect('/feed')
+
 
 #the app configuration section
 app = webapp2.WSGIApplication([
