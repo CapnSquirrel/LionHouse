@@ -12,16 +12,16 @@ body {
 }
 
 #header {
-    grid-row: 1;
-    grid-column: 1 / span 3;
-    height: 25vh;
-    background-color: #5ba6ab;
-    background-image: url("../media/lion_banner.jpg");
-    background-position: 30% 30%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-bottom: 20px;
-      box-shadow:  0 6px 10px 0 #00b200;
+  grid-row: 1;
+  grid-column: 1 / span 3;
+  height: 25vh;
+  background-color: #5ba6ab;
+  background-image: url("../media/lion_banner.jpg");
+  background-position: 30% 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 20px;
+  box-shadow:  0 6px 10px 0 #00b200;
 }
 
 #header_title {
@@ -109,11 +109,11 @@ textarea {
 }
 
 #about_content {
-    background-color: white;
-    margin: 10px;
-    padding: 3px 20px 20px 20px;
-    border-radius: 10px;
-    box-shadow:  0 6px 10px 0 #00b200;
+  background-color: white;
+  margin: 10px;
+  padding: 3px 20px 20px 20px;
+  border-radius: 10px;
+  box-shadow:  0 6px 10px 0 #00b200;
 
 }
 
@@ -140,7 +140,7 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
  .textpost {
    background-color: white;
