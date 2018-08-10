@@ -26,5 +26,6 @@ def populate_feed(current_user):
         "post_count": len(Post.query().filter(Post.author == current_user.key).fetch()),
         "user_count": len(User.query().fetch()),
         "posts": format_posts(Post.query().order(-Post.time).fetch(limit=20)),
+        "users": User.query().order(User.username).fetch(),
     }
     return feed_fields

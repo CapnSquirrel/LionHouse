@@ -39,7 +39,13 @@
             <h1>LionHouse</h1>
             <p>Number of users: {{ user_count }}!!!</p>
         </div>
-        <div id="target_info">About ____</div>
+        {% for user in users %}
+            <div class="textpost">
+              <h1>{{ user.username }}</h1>
+              <p>{{ user.name }}</p>
+              <span>{{ user.email }}</span>
+            </div>
+        {% endfor %}
     </section>
   </body>
 </html>
