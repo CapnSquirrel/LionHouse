@@ -19,7 +19,6 @@ jinja_current_directory = jinja2.Environment(
 class LoginPageHandler(webapp2.RequestHandler):
     def get(self):
         new_user_template = jinja_current_directory.get_template("templates/new_user.html")
-        prev_user_template = jinja_current_directory.get_template("templates/prev_user.html")
         google_login_template = jinja_current_directory.get_template("templates/google_login.html")
 
         # get Google user
