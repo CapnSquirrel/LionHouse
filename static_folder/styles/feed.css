@@ -105,7 +105,7 @@ textarea {
   grid-column: 3 / span 1;
   background-color: #f7f7f7;
   padding: 0px 0px 5px 0px;
-
+  overflow-y: auto;
 }
 
 #about_content {
@@ -114,7 +114,6 @@ textarea {
   padding: 3px 20px 20px 20px;
   border-radius: 10px;
   box-shadow:  0 6px 10px 0 #00b200;
-
 }
 
 #total_title {
