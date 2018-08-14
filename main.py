@@ -45,8 +45,10 @@ class LoginPageHandler(webapp2.RequestHandler):
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        if not user:
+        print("*********" + str(user) + "***********")
+        if user is None:
             self.redirect('/')
+            return # lol idk if this is ok?? it works I guess
         current_user = User.query().filter(User.email == user.email()).get()
         feed_fields = populate_feed(current_user)
         start_feed = jinja_current_directory.get_template("templates/feed.html")
@@ -54,8 +56,9 @@ class FeedHandler(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        if not user:
+        if user is None:
             self.redirect('/')
+            return # lol idk if this is ok?? it works I guess
         current_user = User.query().filter(User.email == user.email()).get()
         if not current_user:
             # upon new user form submission, create new user and store in datastore
