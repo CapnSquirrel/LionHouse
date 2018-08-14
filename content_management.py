@@ -5,18 +5,10 @@ from datetime import datetime
 
 logout_url = users.create_logout_url('/')
 login_url = users.create_login_url('/')
-class PPost():
-    def __init__(self, author, content, time):
-        self.author = author
-        self.content = content
-        self.time = time
 
 def format_posts(posts):
-    formatted_posts = []
-    for post in posts:
-        author = User.query().filter(User.key == post.author).get().username
-        formatted_posts.append(PPost(author, post.content, post.time))
-    return formatted_posts
+    return [(User.query().filter(User.key == post.author).get().username,
+            post.content, post.time) for post in posts]
 
 def populate_feed(current_user):
     feed_fields = {
@@ -25,7 +17,7 @@ def populate_feed(current_user):
         "user_name": current_user.name,
         "post_count": len(Post.query().filter(Post.author == current_user.key).fetch()),
         "user_count": len(User.query().fetch()),
-        "posts": format_posts(Post.query().order(-Post.time).fetch(limit=20)),
+        "posts": format_posts(Post.query().order(-Post.time).fetch(limit=30)),
         "users": User.query().order(User.username).fetch(),
     }
     return feed_fields
