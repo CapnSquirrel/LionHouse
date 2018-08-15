@@ -1,55 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../static_folder/styles/feed.css">
     <title>LionHouse</title>
-  </head>
-  <body>
+</head>
+
+<body>
 
 
-     <section id="header"><span id="header_title">LionHouse</span>
-      </section>
+    <section id="header">
+        <a id="sign_out" href="{{sign_out}}">Sign out</a>
+        <span id="header_title">LionHouse</span>
+    </section>
 
     <!--CONSOLE SECTION -->
 
     <section id="console">
-
-      <div id="user_info">
-        <h2 class="user_info_content" id="user_name">Name: {{ user_name }}</h2>
-        <h2 class="user_info_content" id="username">Username: {{ username }}</h2>
-        <p class="user_info_content">Number of Posts: {{ post_count }} </p>
-        <a class="user_info_content" href="{{sign_out}}">Sign out</a>
-      </div>
-      <div id="post">
-        <form method="post">
-          <h2 class="user_info_content"> Post </h2>
-          <textarea name="user_post" rows="5" cols="30" value=""></textarea>
-          <input id="submit_post_btn" type="submit" value="Submit">
-        </form>
-      </div>
+        <div id="user_info">
+            <h2 class="user_info_content" id="user_name">Name: {{ user_name }}</h2>
+            <h2 class="user_info_content" id="username">Username: {{ username }}</h2>
+            <p class="user_info_content">Number of Posts: {{ post_count }} </p>
+        </div>
+        <div id="post">
+            <form method="post">
+                <h2 class="user_info_content"> Post </h2>
+                <textarea name="user_post" rows="5" cols="30" value=""></textarea>
+                <input id="submit_post_btn" type="submit" value="Submit">
+            </form>
+        </div>
     </section>
     <!--FEED SECTION-->
     <section id="feed">
-      {% for post in posts %}
-          <div class="textpost">
+        {% for post in posts %}
+        <div class="textpost">
             <p>
-              <span id="post_author">{{ post[0] }} says...</span> <br>
-              {{ post[1] }}
+                <span id="post_author">{{ post[0] }} says...</span> <br> {{ post[1] }}
             </p>
             <span id="post_time">{{ post[2] }}</span>
-          </div>
-      {% endfor %}
+        </div>
+        {% endfor %}
     </section>
     <!--ABOUT SECTION-->
     <section id="about">
         <div id="about_content">
-            <h1 id="total_title">Total number of users: {{ user_count }}</h1>
-            {% for user in users %}
-                  <h1 id="target_info">{{ user.username }}</h1>
-            {% endfor %}
+            <h1 id="total_title">Total number of users: {{ user_count }}</h1> {% for user in users %}
+            <h1 id="target_info">{{ user.username }}</h1> {% endfor %}
         </div>
-
     </section>
-  </body>
+
+    <div id="footer">
+        <div id="about_us">
+            <h2>About</h2>
+            <hr>
+        </div>
+        <hr>
+        <div class="footer_content" id="emily_info">
+            <h4>Emily Shoji</h4>
+            <div class="logos">
+                <a href="https://github.com/itsEmShoji"><img class="github_logo" src="../static_folder/media/github.png"></a>
+                <a href="https://itsemshoji.github.io/"><img class="site_logo" src="../static_folder/media/website_logo.png"></a>
+            </div>
+        </div>
+        <div class="footer_content" id="ian_info">
+            <h4>Ian Lizarda</h4>
+            <div class="logos">
+                <a href="https://github.com/CapnSquirrel"><img class="github_logo" src="../static_folder/media/github.png"></a>
+                <a href="https://capnsquirrel.github.io/"><img class="site_logo" src="../static_folder/media/website_logo.png"></a>
+            </div>
+        </div>
+        <div class="footer_content" id="alejandro_info">
+            <h4>Alejandro Zapata</h4>
+            <div class="logos">
+                <a href="https://github.com/ianlizzo"><img class="github_logo" src="../static_folder/media/github.png"></a>
+                <a href="/"><img class="site_logo" src="../static_folder/media/website_logo.png"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
