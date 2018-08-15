@@ -1,6 +1,5 @@
 ## Logging
 import logging as log
-#import coloredlogs
 import time
 import webapp2
 import jinja2
@@ -15,7 +14,6 @@ jinja_current_directory = jinja2.Environment(
         extensions=['jinja2.ext.autoescape'],
         autoescape=True)
 
-#the handler section
 class LoginPageHandler(webapp2.RequestHandler):
     def get(self):
         new_user_template = jinja_current_directory.get_template("templates/new_user.html")
@@ -45,10 +43,10 @@ class LoginPageHandler(webapp2.RequestHandler):
 class FeedHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        print("*********" + str(user) + "***********")
+        # prevent from visiting /feed if not signed in to google
         if user is None:
             self.redirect('/')
-            return # lol idk if this is ok?? it works I guess
+            return # this isn't great but it works
         current_user = User.query().filter(User.email == user.email()).get()
         feed_fields = populate_feed(current_user)
         start_feed = jinja_current_directory.get_template("templates/feed.html")
@@ -56,9 +54,10 @@ class FeedHandler(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
+        # prevent from visiting /feed if not signed in to google
         if user is None:
             self.redirect('/')
-            return # lol idk if this is ok?? it works I guess
+            return # this isn't great but it works
         current_user = User.query().filter(User.email == user.email()).get()
         if not current_user:
             # upon new user form submission, create new user and store in datastore
@@ -76,8 +75,6 @@ class FeedHandler(webapp2.RequestHandler):
         time.sleep(.2)
         self.redirect('/feed')
 
-
-#the app configuration section
 app = webapp2.WSGIApplication([
     ('/', LoginPageHandler),
     ('/feed', FeedHandler),
