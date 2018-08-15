@@ -50,6 +50,9 @@ class FeedHandler(webapp2.RequestHandler):
         current_user = User.query().filter(User.email == user.email()).get()
         feed_fields = populate_feed(current_user)
         start_feed = jinja_current_directory.get_template("templates/feed.html")
+        empty_posts = Post.query().filter(Post.content == "").fetch()
+        for post in empty_posts:
+            post.key.delete()
         self.response.write(start_feed.render(feed_fields))
 
     def post(self):
